@@ -32,9 +32,6 @@ public class VirtualPet {
 		thirst = random.nextInt(100) + 1;
 		tiredness = random.nextInt(100) + 1;
 	}
-	public VirtualPet () {
-		this.selfCare = random.nextInt(10) + 1;
-		 }
 
 	public String getName() {
 		return name;
@@ -80,21 +77,23 @@ public class VirtualPet {
 	}
 
 	public void tick() {
-	
-		if (selfCare == 3) {
+		selfCare = random.nextInt(15) + 1;
+
+		if (selfCare == 5) {
 			System.out.println("Good news! Someone adopted all of the pets in the shelter!");
 			System.exit(0);
 		}
-		if (selfCare>=5 && selfCare<=7) {
-			if (hunger >= 10) {
-				hunger -= 10;
-			}
-			if (boredom >= 10) {
-				boredom += 10;
-			}
-			if (tiredness > 10) {
-				tiredness += 10;
-			}
+		if (hunger >= 10) {
+			hunger -= 10;
+		}
+		if (boredom >= 10) {
+			boredom -= 10;
+		}
+		if (tiredness >= 10) {
+			tiredness -= 10;
+		}
+		if (thirst >= 10) {
+			thirst -= 10;
 		}
 	}
 
@@ -113,10 +112,6 @@ public class VirtualPet {
 
 	public int getTiredness() {
 		return tiredness;
-	}
-
-	public int getSelfCare() {
-		return 	selfCare = random.nextInt(5) + 1;
 	}
 
 	public void playWithPetDisplay() {

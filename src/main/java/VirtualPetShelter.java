@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class VirtualPetShelter {
 	Map<String, VirtualPet> pets = new HashMap<String, VirtualPet>();
-	VirtualPet pet = new VirtualPet();
 
 	public Collection<VirtualPet> getPets() {
 		return pets.values();
@@ -61,15 +60,18 @@ public class VirtualPetShelter {
 
 	public void displayPetNameAndDescriptions() {
 		System.out.println("Name\t|Description");
+		System.out.println("-------\t-----------");
 		for (VirtualPet pet : pets.values()) {
 			pet.playWithPetDisplay();
 		}
 	}
 
 	public void tick() {
-		pet.getSelfCare();
 		for (VirtualPet pet : pets.values()) {
 			pet.tick();
 		}
+	}
+	public int getSize() {
+		return pets.size();
 	}
 }

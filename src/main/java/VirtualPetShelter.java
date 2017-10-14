@@ -34,6 +34,11 @@ public class VirtualPetShelter {
 		 }
 	 }
  }
+ public void putAllPetsToSleep () {
+	 for (VirtualPet pet : pets.values()) {
+		 pet.putPetToSleep();
+	 }
+ }
  public void displayPetTitle () {
 	 System.out.println("This is the status of your pets:");
 		System.out.println("Name\t|Hunger\t|Bored\t|Thirst\t|Tiredness");

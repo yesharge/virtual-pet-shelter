@@ -70,7 +70,9 @@ public class VirtualPet {
 		thirst += 45;
 		selfCare += 1;
 	}
-
+public void putPetToSleep () {
+	tiredness+=45;
+}
 	public void tick() {
 		selfCare = random.nextInt(10) + 1;
 		if (selfCare == 3) {
@@ -111,7 +113,9 @@ public class VirtualPet {
 	public int getSelfCare() {
 		return selfCare;
 	}
-
+public void playWithPetDisplay () {
+	System.out.println(name+"\t|"+description);
+}
 	@Override
 	public String toString() {
 		return "" + this.name + "\t|" + this.hunger + "\t|" + this.boredom + "\t|" + this.thirst + "\t|"

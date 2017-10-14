@@ -32,34 +32,35 @@ public class VirtualPet {
 		thirst = random.nextInt(100) + 1;
 		tiredness = random.nextInt(100) + 1;
 	}
+	public VirtualPet () {
+		this.selfCare = random.nextInt(10) + 1;
+		 }
 
 	public String getName() {
 		return name;
 	}
 
 	public void feedMe() {
-		hunger += 50;
+		if (hunger <= 50) {
+			hunger += 50;
+		}
 	}
 
 	public void playWithMe() {
 		if (boredom <= 55) {
 			boredom += 45;
-			selfCare += 1;
 		}
 		if (thirst >= 10) {
 			thirst -= 10;
-			selfCare -= 1;
 		}
 		if (tiredness >= 35) {
 			tiredness -= 35;
-			selfCare -= 1;
 		}
 	}
 
 	public void sleep() {
 		if (tiredness <= 55) {
 			tiredness += 45;
-			selfCare += 1;
 		}
 		if (hunger >= 30) {
 			hunger -= 30;
@@ -67,26 +68,30 @@ public class VirtualPet {
 	}
 
 	public void waterPet() {
-		thirst += 45;
-		selfCare += 1;
+		if (thirst <= 45) {
+			thirst += 45;
+		}
 	}
-public void putPetToSleep () {
-	tiredness+=45;
-}
+
+	public void putPetToSleep() {
+		if (tiredness <= 45) {
+			tiredness += 45;
+		}
+	}
+
 	public void tick() {
-		selfCare = random.nextInt(10) + 1;
+	
 		if (selfCare == 3) {
-			System.out.println("I'm sorry. Your pet has been ran over by a car.");
+			System.out.println("Good news! Someone adopted all of the pets in the shelter!");
 			System.exit(0);
 		}
-		if (selfCare == 5) {
+		if (selfCare>=5 && selfCare<=7) {
 			if (hunger >= 10) {
 				hunger -= 10;
 			}
 			if (boredom >= 10) {
 				boredom += 10;
 			}
-
 			if (tiredness > 10) {
 				tiredness += 10;
 			}
@@ -111,11 +116,13 @@ public void putPetToSleep () {
 	}
 
 	public int getSelfCare() {
-		return selfCare;
+		return 	selfCare = random.nextInt(5) + 1;
 	}
-public void playWithPetDisplay () {
-	System.out.println(name+"\t|"+description);
-}
+
+	public void playWithPetDisplay() {
+		System.out.println(name + "\t|" + description);
+	}
+
 	@Override
 	public String toString() {
 		return "" + this.name + "\t|" + this.hunger + "\t|" + this.boredom + "\t|" + this.thirst + "\t|"

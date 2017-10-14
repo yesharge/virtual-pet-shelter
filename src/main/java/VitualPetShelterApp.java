@@ -28,73 +28,61 @@ public class VitualPetShelterApp {
 
 		System.out.println("Thank you for volunteering at Yesharge's Virtual Pet Shelter");
 		homelessPets.displayPetTitle();
-		for (VirtualPet pet : homelessPets.getPets()) {
-			System.out.println(pet);
-		}
 
 		do {
 			System.out.println("What would you like to do?:");
 			System.out.println(
-					"1.\tFeed the pets\n2.\tPlay with a pet\n3.\tWater the pets\n4.\tPut the pets to sleep\n5.\tAdmit a pet\n6.\tAdopt a pet\n7.\tQuit");
+					"1.\tFeed the pets\n2.\tPlay with a pet\n3.\tWater the pets\n4.\tPut the pets to sleep\n5.\tAdmit a pet\n6.\tAdopt a pet\n7.\tDisplay Status\n8.\tQuit");
 			menuInput = input.nextLine();
+
 			if (menuInput.equals("1")) {
 				homelessPets.feedAllPets();
 				homelessPets.displayPetTitle();
-				for (VirtualPet pet : homelessPets.getPets()) {
-					System.out.println(pet);
-				}
-
 			} else if (menuInput.equals("2")) {
-
+				homelessPets.displayPetNameAndDescriptions();
 				System.out.println("Enter the name of the pet you would like to play with.");
+				String playWithPet = input.nextLine();
+				homelessPets.playWithASpecificPet(playWithPet);
+				System.out.println("You are playing with "+playWithPet);
+			} else if (menuInput.equals("3")) {
+				homelessPets.waterAllPets();
+			} else if (menuInput.equals("4")) {
+				homelessPets.putAllPetsToSleep();
+			} else if (menuInput.equals("5")) {
+				do {
+					System.out.println("Enter the name of the pet you would like to admit:(7 Characters or less");
+					String newPetName = input.nextLine();
+					System.out.println("Enter a description for the pet.");
+					String petDescription = input.nextLine();
+					homelessPets.addHomelessPet(new VirtualPet(newPetName, petDescription));
+					System.out.println("Would you like to admit another animal? (y/n)");
+					continueAdmit = input.nextLine();
+				} while (continueAdmit.equals("y"));
+				homelessPets.displayPetTitle();
+			} else if (menuInput.equals("6")) {
 				System.out.println("Name\t|Description");
 				for (VirtualPet pet : homelessPets.getPets()) {
 					pet.playWithPetDisplay();
 				}
-				String playWithPet = input.nextLine();
-				homelessPets.playWithASpecificPet(playWithPet);
-			}
-			else if (menuInput.equals("3")) {
-				homelessPets.waterAllPets();
-				homelessPets.displayPetTitle();
-				for (VirtualPet pet : homelessPets.getPets()) {
-					System.out.println(pet);
-				}
-			}
-			else if (menuInput.equals("4")) {
-				homelessPets.putAllPetsToSleep();
-			}
-			else if (menuInput.equals("5")) {
-	do {System.out.println("Enter the name of the pet you would like to admit:(7 Characters or less");
-	String newPetName = input.nextLine();
-	System.out.println("Enter a description for the pet.");
-		String petDescription = input.nextLine();
-		homelessPets.addHomelessPet(new VirtualPet(newPetName, petDescription, random.nextInt(100) + 1,
-				random.nextInt(100) + 1, random.nextInt(100) + 1, random.nextInt(100) + 1));
-		System.out.println("Would you like to admit another animal? (y/n)");
-		continueAdmit = input.nextLine();
-			} while (continueAdmit.equals("y"));
-	homelessPets.displayPetTitle();
-	for (VirtualPet pet : homelessPets.getPets()) {
-		System.out.println(pet);
-	}
-			}
-			else if (menuInput.equals("6")) {
-				System.out.println("Name\t|Description");
-			for (VirtualPet pet : homelessPets.getPets()) {
-				pet.playWithPetDisplay();
-			}
-				do {System.out.println("Enter the name of the pet you would like to adopt?");
-				removePet = input.nextLine();
-				homelessPets.adoptAPet(removePet);
-				System.out.println("Would you like to adopt another pet? (y/n)");
-				removePet = input.nextLine();
-			} while(removePet.equals("y"));
+				do {
+					System.out.println("Enter the name of the pet you would like to adopt?");
+					removePet = input.nextLine();
+					homelessPets.adoptAPet(removePet);
+					System.out.println("Would you like to adopt another pet? (y/n)");
+					removePet = input.nextLine();
+				} while (removePet.equals("y"));
 				System.out.println("Thank you for adopting a pet.");
+			} else if (menuInput.equals("7")) {
+				homelessPets.displayPetTitle();
 			}
-		} while (!menuInput.equals("7"));
+			homelessPets.tick();
+		} while (!menuInput.equals("8"));
 		input.close();
 		System.exit(0);
+
+	}
+
+	public static void displayDescription() {
 
 	}
 }

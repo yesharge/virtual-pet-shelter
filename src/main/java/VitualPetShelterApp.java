@@ -2,12 +2,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class VitualPetShelterApp {
+	static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
 		VirtualPetShelter homelessPets = new VirtualPetShelter();
 		Random random = new Random();
-		Scanner input = new Scanner(System.in);
 		String menuInput = null;
 		String continueAdmit = null;
 		String removePet = null;
@@ -30,6 +30,7 @@ public class VitualPetShelterApp {
 		homelessPets.displayPetTitle();
 
 		do {
+			System.out.println();
 			System.out.println("What would you like to do?:");
 			System.out.println(
 					"1.\tFeed the pets\n2.\tPlay with a pet\n3.\tWater the pets\n4.\tPut the pets to sleep\n5.\tAdmit a pet\n6.\tAdopt a pet\n7.\tDisplay the Pet Status\n8.\tQuit");
@@ -43,6 +44,10 @@ public class VitualPetShelterApp {
 				homelessPets.displayPetNameAndDescriptions();
 				System.out.println("Enter the name of the pet you would like to play with.");
 				String playWithPet = input.nextLine();
+				while (!homelessPets.checkIfAPetexists(playWithPet)) {
+					System.out.println("I'm sorry that pet does not exist. Re enter the pet name: ");
+					playWithPet = input.nextLine();
+				}
 				homelessPets.playWithASpecificPet(playWithPet);
 				homelessPets.tick();
 				System.out.println("You are playing with " + playWithPet);
@@ -58,6 +63,10 @@ public class VitualPetShelterApp {
 				do {
 					System.out.println("Enter the name of the pet you would like to admit:(7 Characters or less)");
 					String newPetName = input.nextLine();
+					while (newPetName.length() > 7) {
+						System.out.println("Name is too long. Please enter a shorter name.");
+						newPetName = input.nextLine();
+					}
 					System.out.println("Enter a description for the pet.");
 					String petDescription = input.nextLine();
 					homelessPets.addHomelessPet(new VirtualPet(newPetName, petDescription));
@@ -71,6 +80,10 @@ public class VitualPetShelterApp {
 				do {
 					System.out.println("Enter the name of the pet you would like to adopt?");
 					removePet = input.nextLine();
+					while (!homelessPets.checkIfAPetexists(removePet)) {
+						System.out.println("I'm sorry that pet does not exist. Re enter the pet name: ");
+						removePet = input.nextLine();
+					}
 					homelessPets.adoptAPet(removePet);
 					System.out.println("Would you like to adopt another pet? (y/n)");
 					removePet = input.nextLine();
@@ -81,10 +94,10 @@ public class VitualPetShelterApp {
 				homelessPets.displayPetTitle();
 				homelessPets.tick();
 			}
-
 		} while (!menuInput.equals("8"));
 		input.close();
 		System.exit(0);
 
 	}
+
 }

@@ -1,0 +1,26 @@
+The virtual pet shelter will house homeless animals and will begin with a random level for each mood/instance variable.
+0 indicates that the pet needs immediate attention, 100 indicates the pet is satisfied.
+Points will not be added if a pet's level will surpass 100 or dip below 0.
+
+Instance variables:
+	hunger, tiredness, boredom, thirst
+
+Methods:
+1. feedAllPets()
+	-all pets' hunger is increased by 50.
+2. playWithAllPets()
+	-user will select a pet to play with
+	-when this method is called boredom is increased by 45 
+	-tiredness is decreased by 35
+3. sleep() 
+	- tiredness is increased by 45
+	- hunger is decreased by 30
+4. waterAllPets() 
+	-all pets' thirst is increased by 45
+5. tick()
+	-there is a random number generator that will reset every loop/method that's called. If the number is equal to 5 someone will adopt all of the pets in the shelter and the game will exit
+	-boredom, tiredness, hunger, and thirst will decrease by 10 every loop no matter what method is called
+6. adoptAPet()
+	-user will be able to adopt a pet 
+7. addHomelessPet()
+	-user will be able to admit a pet to the shelter by providing a name and description

@@ -18,6 +18,13 @@ public class VirtualPetShelter {
 
 	}
 
+	public boolean checkIfAPetexists(String name) {
+		if (pets.containsKey(name)) {
+			return true;
+		}
+		return false;
+	}
+
 	public void adoptAPet(String name) {
 		pets.remove(name);
 	}
@@ -55,7 +62,7 @@ public class VirtualPetShelter {
 		for (VirtualPet pet : pets.values()) {
 			System.out.println(pet);
 		}
-		System.out.println();
+
 	}
 
 	public void displayPetNameAndDescriptions() {
@@ -71,6 +78,7 @@ public class VirtualPetShelter {
 			pet.tick();
 		}
 	}
+
 	public int getSize() {
 		return pets.size();
 	}
